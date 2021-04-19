@@ -35,4 +35,69 @@
         \textbf{Київ 2021}
     \end{center}
 \end{titlepage}
+
+\section{Линейное программирование}
+\subsection{Задача}
+\begin{equation}
+	f(x)=\sum_{j=1}^n c_j x_j \to \min
+\end{equation}
+
+\begin{equation}
+	\begin{cases}	
+		\sum_{j=1}^n a_{ij} x_j \geq b_i, &  i=1,\dots, k\\
+		\sum_{j=1}^n a_{ij} x_j= b_i, & i=k+1,\dots,m
+	\end{cases}
+\end{equation}
+\subsection{Формы}
+
+Общая форма:
+
+\begin{equation}
+	f(x)=\sum_{j=1}^n c_j x_j \to \min
+\end{equation}
+
+\begin{equation}
+\begin{cases}	
+	\sum_{j=1}^n a_{ij} x_j \geq b_i, &  i=1,\dots, k\\
+	\sum_{j=1}^n a_{ij} x_j= b_i, & i=k+1,\dots,m
+\end{cases}
+\end{equation}
+
+Основная форма:
+
+\begin{equation}
+	f(x)=\sum_{j=1}^n c_j x_j \to \min
+\end{equation}
+
+\begin{equation}
+	\begin{cases}	
+		\sum_{j=1}^n a_{ij} x_j \geq b_i, i=1,\dots, m
+	\end{cases}
+\end{equation}
+
+Стандартная форма:
+
+\begin{equation}
+	f(x)=\sum_{j=1}^n c_j x_j \to \min
+\end{equation}
+
+\begin{equation}
+	\begin{cases}	
+		\sum_{j=1}^n a_{ij} x_j \geq b_i, &  i=1,\dots, k\\
+		x_j\geq0, & j=1,\dots,n
+	\end{cases}
+\end{equation}
+
+Каноническая форма: 
+
+\begin{equation}
+	f(x)=\sum_{j=1}^n c_j x_j \to \min
+\end{equation}
+\begin{equation}
+	\begin{cases}	
+		\sum_{j=1}^n a_{ij} x_j= b_i, &i=1,\dots,m\\
+		x_j\geq0, & j=1,\dots,n\\
+		b_i\geq0, & i=1,\dots,m
+	\end{cases}
+\end{equation}
 \end{document}
