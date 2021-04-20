@@ -1,0 +1,268 @@
+\documentclass[12pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[OT1]{fontenc}
+\usepackage{lmodern}
+\usepackage[russian]{babel}
+\usetheme{Berkeley}
+\usecolortheme{monarca}
+\begin{document}
+	%\author{}
+	%\title{}
+	%\subtitle{}
+	%\logo{}
+	%\institute{}
+	%\date{}
+	%\subject{}
+	%\setbeamercovered{transparent}
+	%\setbeamertemplate{navigation symbols}{}
+	\begin{frame}[plain]
+		\maketitle
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{}
+	\end{frame}
+	\begin{frame}
+	\frametitle{Задача линейного программирования}
+	Целевая функция и ограничения представляют собой линейные функции и линейные неравенства соответственно. 
+	\begin{equation*}
+		f(x)=\sum_{j=1}^n c_j x_j \to \min
+	\end{equation*}
+	\begin{equation*}
+		\begin{cases}	
+			\sum_{j=1}^n a_{ij} x_j \geq b_i, &  i=1,\dots, k\\
+			\sum_{j=1}^n a_{ij} x_j= b_i, & i=k+1,\dots,m
+		\end{cases}
+	\end{equation*}
+	\end{frame}
+	\begin{frame}
+	\frametitle{Основная форма}
+	\begin{itemize}
+	\item Условия - неравенства 
+\end{itemize}
+	\begin{equation*}
+		f(x)=\sum_{j=1}^n c_j x_j \to \min
+	\end{equation*}
+	
+	\begin{equation*}
+			\sum_{j=1}^n a_{ij} x_j \geq b_i, i=1,\dots, m
+	\end{equation*}
+\end{frame}
+
+	\begin{frame}
+	\frametitle{Стандартная форма}
+	\
+	\begin{itemize}
+		\item Ограничения исключительно неравенства
+		\item Переменные - положительные
+	\end{itemize}
+	
+\begin{equation*}
+	f(x)=\sum_{j=1}^n c_j x_j \to \min
+\end{equation*}
+
+\begin{equation*}
+	\begin{cases}	
+		\sum_{j=1}^n a_{ij} x_j \geq b_i, &  i=1,\dots, k\\
+		x_j\geq0, & j=1,\dots,n
+	\end{cases}
+\end{equation*}
+\end{frame}
+	\begin{frame}
+	\frametitle{Каноническая форма}
+	\begin{itemize}
+		\item Ограничения - равенства
+		\item Переменные - неотрицательныe
+		\item Правые части уравнений - также неотрицательны
+	\end{itemize}
+\begin{equation*}
+	f(x)=\sum_{j=1}^n c_j x_j \to \min
+\end{equation*}
+\begin{equation*}
+	\begin{cases}	
+		\sum_{j=1}^n a_{ij} x_j= b_i, &i=1,\dots,m\\
+		x_j\geq0, & j=1,\dots,n\\
+		b_i\geq0, & i=1,\dots,m
+	\end{cases}
+\end{equation*}
+\end{frame}
+\begin{frame}
+\frametitle{Переход от Общей к Канонической}
+Задача: 
+\begin{equation*}
+	-2x_1+4x_2+3x_3 \to \max
+\end{equation*}
+
+\begin{equation*}
+	\begin{cases}	
+		x_1+2x_2+x_3\leq 1\\
+		2x_1-5x_2+4x_3\geq 7\\
+		x_1\geq0\\
+		x_2\geq0
+	\end{cases}
+\end{equation*}
+\end{frame}
+\begin{frame}
+\frametitle{Переход от Общей к Канонической}
+
+Умножим первое уравнение на (-1):
+\[2x_1-4x_2+3x_3 \to \min\]
+Добавим к первому условию вспомогательну неотрицательную переменную $u_1$:
+\[x_1+2x_2+x_3+u_1= 1\]
+Вычтем из второго условия вспомогательную неотрицательную переменную $u_2$:
+\[2x_1-5x_2+4x_3-u_2= 7\]
+Представим переменную $x_3$ как $x_3^1-x_3^2$, $x_3^1\geq 0 \;x_3^2\geq 0$
+\end{frame}
+\begin{frame}
+	\frametitle{Переход от Общей к Канонической}
+\[2x_1-4x_2+3x_3^1-3x_3^2 \to \min\]
+\begin{equation*}
+	\begin{cases}	
+		x_1+2x_2+x_3^1-x_3^2+u_1= 1\\
+		2x_1-5x_2+4x_3^1-4x_3^2-u_2= 7\\
+		x_1,x_2,x_3^1,x_3^2,u_1,u_2\geq0
+	\end{cases}
+\end{equation*}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Наводящие размышления}
+	Допустимая область таких задач - фигура многогранник или же полиэдр. Одно из свойств таких фигур наличие углов:
+	\begin{itemize}
+		\item Точка $v$ называется угловой точкой множества U, если представление $v=\alpha v_1+(1-\alpha)v_2$, при $u_1, u_2\in U$ и $0<\alpha <1$ возможно лишь при $v_1=v_2$
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Общий алгоритм}
+\begin{enumerate}
+	\item Начальное допустимое базисное решение.
+	\item По условию оптимальности определяется вводимая переменная. Если таких нет - алгоритм останавливается
+	\item На основе условия допустимости выбирается исключаемая переменная
+	\item Методом Гаусса-Жордана вычисляется новое базисное решение.
+\end{enumerate}
+\end{frame}
+\begin{frame}
+	\frametitle{Условия }
+	\begin{enumerate}
+		\item Условие отпимальности. 
+		
+		Вводимая переменная в задаче максимизации является небазиная переменная, имеющая наибольший отрицательный (положительный) коэффицеиент в $z-$ строке
+		\item Условия допустимости.
+		
+		Исключающая переменная является базисной, для которого значение правой части ограничения к положительному коэффициенту ведущего столбца минимально.
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Симплекс-метод}
+Алгоритм неформально: 
+\begin{itemize}
+	\item Построение симплекс таблицы
+	\item Замена переменных в базисном наборе
+\end{itemize}
+\end{frame}
+\begin{frame}
+	\frametitle{Пример. Условие}
+Задача:
+\[z=5x_1+4x_2+0s_1+0s_2+0s_3+0s_4\]
+Ограничения: 
+\begin{equation}
+	\begin{cases}	
+		6x_1+4x_2+s_1= 24\\
+		x_1+2x_2+s_2= 6\\
+		-x_1+x_2+s_3=1\\
+		x_2+s_4=2\\
+		x_1,x_2,s_1,s_2,s_3,s_4\geq0
+	\end{cases}
+\end{equation}
+\end{frame}
+\begin{frame}
+	\frametitle{Таблица}
+	Как базис: $s_1,s_2,s_3,s_4$
+	
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+		\hline
+		Базис & z  & $x_1$ & $x_2$  & $s_1$  & $s_2$  & $s_3$  & $s_4$  & Решение \\
+		\hline
+		$z $& 1  &  -5 & -4 & 0 & 0  & 0  & 0 & 0 \\
+		\hline
+		$s_1$& 0 & 6 & 4  & 1  & 0 & 0 & 0 & 24 \\
+		
+		$s_2$& 0 & 1 & 2 & 0 & 1 & 0 & 0 & 6 \\
+		
+		$s_3$& 0 & -1 & 1 & 0 & 0 & 1 & 0 & 1 \\
+		
+		$s_4$& 0 & 0 & 1 & 0 & 0 & 0 & 1 & 2 \\ 
+		\hline
+	\end{tabular}
+\end{frame}
+\begin{frame}
+	\frametitle{Базис получше}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		Базис & $x_1$  & Решение & Отношение (точка пересечения)  \\
+		\hline
+		
+		$s_1$& 6 & 24 & $24/6=4$  \\
+		
+		$s_2$& 1 & 6 & $6/1=6$ \\
+		
+		$s_3$& -1 & 1 & $1/(-1)=-1$ \\
+		
+		$s_4$& 0 & 2 & $2/0=\infty$ \\ 
+		\hline
+	\end{tabular}
+\end{frame}
+\begin{frame}
+	\frametitle{Алгоритм Жордана-Гаусса}
+	\begin{itemize}
+		\item Вычисление элементов новой ведущей строки.
+		
+		Новая ведущая строка $=$ Текущая ведущая строка $/$ Ведущий элемент
+		\item Вычисления элементов остальных строк, включая $z-$ строку.
+		
+		Новая строка=Текущая строка - Её коэффициент в ведщем столбце $\times$ Новая ведущая строка.
+	\end{itemize}
+\end{frame}
+\begin{frame}
+	\frametitle{Вторая Иттерация Метода}
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+		\hline
+		Базис & z  & $x_1$ & $x_2$  & $s_1$  & $s_2$  & $s_3$  & $s_4$  & Решение \\
+		\hline
+		$z $& 1  &  0 & ${-2}/{3}$ & ${5}/{6}$ & 0  & 0  & 0 & 20 \\
+		\hline
+		$s_1$& 0 & 1 & ${2}/{3}$  & ${1}/{6}$  & 0 & 0 & 0 & 4 \\
+		
+		$s_2$& 0 & 0 & ${2}/{3}$ & ${-1}/{6}$ & 0 & 1 & 0 & 5 \\
+		
+		$s_3$& 0 & 0 & ${5}/{3}$ & ${1}/{6}$ & 0 & 1 & 0 & 5 \\
+		
+		$s_4$& 0 & 0 & 1 & 0 & 0 & 0 & 1 & 2 \\ 
+		\hline
+	\end{tabular}
+\end{frame}
+\begin{frame}
+	\frametitle{Третья Иттерация Метода}
+Как базис $ x_1,x_2,s_3,s_4$
+
+
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+	\hline
+	Базис & z  & $x_1$ & $x_2$  & $s_1$  & $s_2$  & $s_3$  & $s_4$  & Решение \\
+	\hline
+	$z $& 1  &  0 & 0 & $3/4$ & $1/2$  & 0  & 0 & 21 \\
+	\hline
+	$x_1$& 0 & 1 & 0  & $1/4$  & $-1/2$ & 0 & 0 & 3 \\
+	
+	$x_2$& 0 & 0 & 1 & $-1/8$ & $3/4$ & 0 & 0 & $3/2$ \\
+	
+	$s_1$& 0 & 0 & 0 & $3/8$ & $-5/4$ & 1 & 0 & $5/2$ \\
+	
+	$s_2$& 0 & 0 & 0 & $1/8$ & $-3/4$ & 0 & 1 & $1/2$ \\ 
+	\hline
+\end{tabular}
+\end{frame}
+\end{document}
